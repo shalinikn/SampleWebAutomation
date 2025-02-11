@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="UMS Test Suite" verbose="1">
+    <listeners>
+        <listener class-name="utils.Listeners" />
+    </listeners>
+    <test name="LoginAndroid Test">
+        <classes>
+            <class name="TestClasses.HomePageTest">
+                <methods>
+                    <include name="testNavigateToDoPage" />
+                    <include name="testAddingNewToDo" />
+                    <include name="testMarkToDoComplete" />
+                    <include name="testCheckActiveToDo" />
+                    <include name="testClearToDo" />
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
