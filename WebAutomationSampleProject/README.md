@@ -35,10 +35,11 @@ Before running the project, ensure the following are installed on your system:
 `    mvn test
 `
 3. Using TestNG XML You can also run tests by using a testng.xml configuration file. For example:
-<suite name="Sample Web Automation Suite">
-<test name="Sample Test">
+```bash
+<suite name="Test Suite">
+<test name="ToDo Acceptance Test">
 <classes>
-<class name="com.example.tests.SampleTest"/>
+<class name="TestClasses.HomePageTest"/>
 </classes>
 </test>
 </suite>

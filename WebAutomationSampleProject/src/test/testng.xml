@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="UMS Test Suite" verbose="1">
+<suite name="Test Suite" verbose="1">
     <listeners>
         <listener class-name="utils.Listeners" />
     </listeners>
-    <test name="LoginAndroid Test">
+    <test name="ToDo Acceptance Test">
         <classes>
             <class name="TestClasses.HomePageTest">
                 <methods>
