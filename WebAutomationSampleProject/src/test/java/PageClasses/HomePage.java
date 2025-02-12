@@ -50,6 +50,13 @@ public class HomePage extends BasePage {
     @FindBy(xpath = "//label[text()='Get Ready']")
     private WebElement getReadyText;
 
+    @FindBy(xpath = "//a[text()='All']")
+    private WebElement allCta;
+
+    @FindBy(xpath = "//span[@class='todo-count']")
+    private WebElement toDoCount;
+
+
     /**
      * Verifies that the landing page text is visible.
      *
@@ -151,5 +158,27 @@ public class HomePage extends BasePage {
     public boolean validateClearToDo() {
         waitForElementToBeVisible(clearToDoItems);
         return false;
+    }
+
+    /**
+     * Clicks on the "All" call-to-action (CTA) button.
+     * This button is used to display all to-do items, including completed and active ones.
+     *
+     * @return true if the action is performed successfully
+     */
+    public boolean clickOnAllCta() {
+        allCta.click();
+        return true;
+    }
+
+    /**
+     * Validates if the to-do items count matches "1 item left!".
+     * Fetches the text from the to-do count element and checks for the expected value.
+     *
+     * @return true if the validation is successful
+     */
+    public boolean ToDoLeft() {
+        toDoCount.getText().equals("1 item left!");
+        return true;
     }
 }

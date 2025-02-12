@@ -13,6 +13,8 @@
                     <include name="testMarkToDoComplete" />
                     <include name="testCheckActiveToDo" />
                     <include name="testClearToDo" />
+                    <include name="testAllToDo" />
+                    <include name="testToDoCount" />
                 </methods>
             </class>
         </classes>

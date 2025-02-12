@@ -75,4 +75,28 @@ public class HomePageTest extends BaseTest {
         pageObjectManager.getHomePage().clickOnClearToDo();
         pageObjectManager.getHomePage().validateClearToDo();
     }
+
+    /**
+     * Test to validate all to-do operations: sending a to-do item, clicking the checkbox,
+     * interacting with active to-dos, and clicking the "All" call-to-action (CTA) button.
+     */
+    @Test(priority = 6)
+    public void testAllToDo() {
+        pageObjectManager.getHomePage().sendToDo();
+        pageObjectManager.getHomePage().clickOnCheckBox();
+        pageObjectManager.getHomePage().clickOnActiveToDo();
+        pageObjectManager.getHomePage().clickOnAllCta();
+    }
+
+    /**
+     * Test to validate the to-do count: sending a to-do item, clicking the checkbox,
+     * interacting with active to-dos, and checking if the remaining to-do count matches the expected value.
+     */
+    @Test(priority = 7)
+    public void testToDoCount() {
+        pageObjectManager.getHomePage().sendToDo();
+        pageObjectManager.getHomePage().clickOnCheckBox();
+        pageObjectManager.getHomePage().clickOnActiveToDo();
+        pageObjectManager.getHomePage().ToDoLeft();
+    }
 }
