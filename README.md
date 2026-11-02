@@ -57,10 +57,10 @@ Each test calls `HomePage` through `PageObjectManager`. `HomePage` uses the help
 
 ```bash
 git clone https://github.com/shalinikn/SampleWebAutomation.git
-cd SampleWebAutomation/WebAutomationSampleProject
+cd SampleWebAutomation
 
 # Run tests with the Extent report
 mvn test -Dsurefire.suiteXmlFiles=src/test/testng.xml
 ```
 
-**Reports:** The TestNG report is written to `target/surefire-reports/index.html`, and the Extent report to `../WebAutomationSampleProject./reports/`.
+**Reports:** The TestNG report is written to `target/surefire-reports/index.html`, and the Extent report to `reports/index.html`.

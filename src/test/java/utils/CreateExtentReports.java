@@ -9,7 +9,7 @@ public class CreateExtentReports {
 
     public static ExtentReports getReportObject() {
         // Ensure the report directory exists
-        String path = System.getProperty("user.dir") + ".//reports//index.html";
+        String path = System.getProperty("user.dir") + "/reports/index.html";
         ExtentSparkReporter reporter = new ExtentSparkReporter(path);
         reporter.config().setReportName("Sample Extent Report");
         extentReports.attachReporter(reporter);
