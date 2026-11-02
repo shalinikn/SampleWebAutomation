@@ -1,47 +1,66 @@
 # Sample Web Automation Project
 
-This is a sample Selenium-based web automation framework built using Java, TestNG, and Maven. The project is designed to provide an easy-to-use structure for automating web applications.
+UI test automation for the [TodoMVC React app](https://todomvc.com/examples/react/dist/), built with Selenium, TestNG and Maven.
 
-## Features
+## Tech Stack
 
-- **WebDriver Manager:** Automatic browser driver management.
-- **Selenium WebDriver:** Core library for browser automation.
-- **TestNG:** Organizes and executes test cases efficiently.
-- **Extent Reports:** Generates detailed, interactive HTML reports.
-- **Logback:** Advanced logging framework for debugging.
-- **Lombok:** Simplifies Java coding with annotations.
-- **Maven:** Handles dependencies and builds automation.
+| Tool | Version | Purpose |
+|---|---|---|
+| Java | 17+ | Language |
+| Maven | 3.9+ | Build and dependencies |
+| Selenium WebDriver | 4.10.0 | Browser automation |
+| WebDriverManager | 5.9.2 | Downloads chromedriver automatically |
+| TestNG | 7.4.0 | Test framework |
+| ExtentReports | 4.0.9 | HTML test report |
+| Logback | 1.3.0 | Logging |
+| Lombok | 1.18.34 | Removes boilerplate code |
 
-## Repository Link
+## Architecture
 
-[Sample Web Automation GitHub Repository](https://github.com/shalinikn/SampleWebAutomation)
+Page Object Model:
 
-## Prerequisites
+```
+src/test/
+├── testng.xml                  # Test suite
+└── java/
+    ├── TestClasses/            # Tests
+    │   ├── BaseTest            #   opens and closes Chrome
+    │   ├── PageObjectManager   #   provides page objects to tests
+    │   └── HomePageTest        #   test cases
+    ├── PageClasses/            # Page objects
+    │   ├── BasePage            #   shared waits and actions
+    │   └── HomePage            #   TodoMVC locators and actions
+    ├── WebUtils/WebActions     # Hover, drag-and-drop, JS click
+    └── utils/                  # Extent report listener
+```
 
-Before running the project, ensure the following are installed on your system:
+Each test calls `HomePage` through `PageObjectManager`. `HomePage` uses the helpers in `BasePage` to drive Chrome.
 
-- **Java Development Kit (JDK 17)** or later
-- **Maven** for dependency management
-- **An IDE** (e.g., IntelliJ IDEA or Eclipse)
+## What Happens When You Run It
 
-## Installation
+1. Maven downloads the dependencies and compiles the tests.
+2. TestNG reads `testng.xml` and starts `HomePageTest`.
+3. `BaseTest` downloads the matching chromedriver, opens Chrome and loads the TodoMVC app.
+4. The tests run in order on the same browser:
+   - open the app
+   - add to-dos ("WakeUp", "Gym", "Get Ready")
+   - mark one complete
+   - view the Active and All tabs
+   - clear completed items
+   - check the "items left" count
+5. The listener logs each pass or fail to the Extent report.
+6. Chrome closes and the reports are saved.
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/shalinikn/SampleWebAutomation.git
+## Setup
 
-2. Running Tests
-   Using Maven
-`    mvn test
-`
-3. Using TestNG XML You can also run tests by using a testng.xml configuration file. For example:
+**Prerequisites:** JDK 17+, Maven, Google Chrome
+
 ```bash
-<suite name="Test Suite">
-<test name="ToDo Acceptance Test">
-<classes>
-<class name="TestClasses.HomePageTest"/>
-</classes>
-</test>
-</suite>
+git clone https://github.com/shalinikn/SampleWebAutomation.git
+cd SampleWebAutomation/WebAutomationSampleProject
 
+# Run tests with the Extent report
+mvn test -Dsurefire.suiteXmlFiles=src/test/testng.xml
+```
 
+**Reports:** The TestNG report is written to `target/surefire-reports/index.html`, and the Extent report to `../WebAutomationSampleProject./reports/`.
